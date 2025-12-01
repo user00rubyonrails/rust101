@@ -1,0 +1,16 @@
+building todo-app
+- todo structs
+  main.rs
+  to_do/
+    mod.rs
+    structs/
+      base.rs
+      done.rs
+      pending.rs
+      mod.rs
+
+
+## Need scalable: why?
+other dev might also implement our mod incorrectly.
+Prevent it! use `interface`
+use factory pattern.
