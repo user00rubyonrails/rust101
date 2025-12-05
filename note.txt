@@ -14,3 +14,6 @@ building todo-app
 other dev might also implement our mod incorrectly.
 Prevent it! use `interface`
 use factory pattern.
+
+## Need to defined `CRUD`: we need to give our structs some `traits`.
+- defining a trait for each type of process gives us the ability to fine-tune the functionality for each type
