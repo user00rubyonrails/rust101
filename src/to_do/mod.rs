@@ -1,11 +1,15 @@
 pub mod structs;
 
 // use factory pattern to manage structs
+use structs::archived::Archived;
 use structs::done::Done;
 use structs::pending::Pending;
+
+#[derive(Debug)]
 pub enum ItemTypes {
     Pending(Pending),
     Done(Done),
+    // Archived(Archived),
 }
 
 pub fn to_do_factory(item_type: &str, item_title: &str) -> Result<ItemTypes, &'static str> {
