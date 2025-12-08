@@ -17,7 +17,8 @@ fn main() {
 
     let state: Map<String, Value> = read_file(String::from("./state.json"));
 
-    // println!("{:?}", state);
+    println!("{:?}", state);
+
     let status: String;
     match &state.get(title) {
         Some(result) => status = result.to_string().replace('\"', ""),

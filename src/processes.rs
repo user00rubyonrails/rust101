@@ -1,10 +1,11 @@
 use serde_json::Map;
 use serde_json::value::Value;
 
+use super::to_do::structs::hold::Hold;
+
 use super::to_do::ItemTypes;
 use super::to_do::structs::done::Done;
 use super::to_do::structs::pending::Pending;
-use super::to_do::structs::archived::Archived;
 
 use super::to_do::structs::traits::create::Create;
 use super::to_do::structs::traits::delete::Delete;
@@ -12,9 +13,6 @@ use super::to_do::structs::traits::edit::Edit;
 use super::to_do::structs::traits::get::Get;
 
 fn process_pending(item: Pending, command: String, state: &Map<String, Value>) {
-    println!("❌---------------");
-    println!("{:?} - {:?}", item, command);
-    println!("--------------❌-");
     let mut state = state.clone();
     match command.as_str() {
         "get" => item.get(&item.super_struct.title, &state),
@@ -25,6 +23,7 @@ fn process_pending(item: Pending, command: String, state: &Map<String, Value>) {
         ),
         "delete" => item.delete(&item.super_struct.title, &mut state),
         "edit" => item.set_to_done(&item.super_struct.title, &mut state),
+        "edit_hold" => item.set_to_hold(&item.super_struct.title, &mut state),
         _ => println!("command: {} not supported", command),
     }
 }
@@ -39,23 +38,18 @@ fn process_done(item: Done, command: String, state: &Map<String, Value>) {
     }
 }
 
-fn process_archived(item: Archived, command: String, state: &Map<String, Value>) {
+fn process_hold(item: Hold, command: String, state: &Map<String, Value>) {
     let mut state = state.clone();
     match command.as_str() {
         "get" => item.get(&item.super_struct.title, &state),
-        "delete" => item.delete(&item.super_struct.title, &mut state),
-        "edit" => item.set_to_pending(&item.super_struct.title, &mut state),
+        "edit" => item.set_to_done(&item.super_struct.title, &mut state),
         _ => println!("command: {} not supported", command),
     }
 }
-
 pub fn process_input(item: ItemTypes, command: String, state: &Map<String, Value>) {
-    println!("❌---------------");
-    println!("{:?} - {:?}", item, command);
-    println!("--------------❌-");
     match item {
         ItemTypes::Pending(item) => process_pending(item, command, state),
         ItemTypes::Done(item) => process_done(item, command, state),
-        // ItemTypes::Archived(item) => process_archived(item, command, state),
+        ItemTypes::Hold(item) => process_hold(item, command, state),
     }
 }

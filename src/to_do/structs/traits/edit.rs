@@ -13,4 +13,10 @@ pub trait Edit {
         write_to_file("./state.json", state);
         println!("{} is being set to pending", title);
     }
+
+    fn set_to_hold(&self, title: &str, state: &mut Map<String, Value>) {
+        state.insert(title.to_string(), json!(String::from("hold")));
+        write_to_file("./state.json", state);
+        println!("{} is being set to hold", title);
+    }
 }
