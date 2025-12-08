@@ -1,0 +1,13 @@
+/home/naka/Desktop/work/rust/rust101/chap3/basic_setup/target/debug/deps/net2-21442db16f354ae1.d: /home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/net2-0.2.39/src/lib.rs /home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/net2-0.2.39/src/tcp.rs /home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/net2-0.2.39/src/udp.rs /home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/net2-0.2.39/src/socket.rs /home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/net2-0.2.39/src/ext.rs /home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/net2-0.2.39/src/utils.rs /home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/net2-0.2.39/src/sys/unix/mod.rs /home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/net2-0.2.39/src/sys/unix/impls.rs /home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/net2-0.2.39/src/unix.rs
+
+/home/naka/Desktop/work/rust/rust101/chap3/basic_setup/target/debug/deps/libnet2-21442db16f354ae1.rmeta: /home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/net2-0.2.39/src/lib.rs /home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/net2-0.2.39/src/tcp.rs /home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/net2-0.2.39/src/udp.rs /home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/net2-0.2.39/src/socket.rs /home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/net2-0.2.39/src/ext.rs /home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/net2-0.2.39/src/utils.rs /home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/net2-0.2.39/src/sys/unix/mod.rs /home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/net2-0.2.39/src/sys/unix/impls.rs /home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/net2-0.2.39/src/unix.rs
+
+/home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/net2-0.2.39/src/lib.rs:
+/home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/net2-0.2.39/src/tcp.rs:
+/home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/net2-0.2.39/src/udp.rs:
+/home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/net2-0.2.39/src/socket.rs:
+/home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/net2-0.2.39/src/ext.rs:
+/home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/net2-0.2.39/src/utils.rs:
+/home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/net2-0.2.39/src/sys/unix/mod.rs:
+/home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/net2-0.2.39/src/sys/unix/impls.rs:
+/home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/net2-0.2.39/src/unix.rs:

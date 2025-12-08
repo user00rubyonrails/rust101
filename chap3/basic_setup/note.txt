@@ -1,0 +1,10 @@
+
+error[E0277]: cannot subtract `TimeDelta` from `Tm`
+   --> /home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/actix-http-1.0.1/src/cookie/jar.rs:224:44
+    |
+224 |             cookie.set_expires(time::now() - Duration::days(365));
+    |                                            ^ no implementation for `Tm - TimeDelta`
+
+[Chrono change to v0.4.30 breaks the build of actix-http-1.0.1 #3135]
+For reference this is what I had to do to specify the exact version before the breaking changes.
+chrono = { version = "= 0.4.29" }

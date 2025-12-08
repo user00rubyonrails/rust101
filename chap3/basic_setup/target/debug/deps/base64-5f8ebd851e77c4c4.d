@@ -1,0 +1,12 @@
+/home/naka/Desktop/work/rust/rust101/chap3/basic_setup/target/debug/deps/base64-5f8ebd851e77c4c4.d: /home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/base64-0.11.0/src/lib.rs /home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/base64-0.11.0/src/chunked_encoder.rs /home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/base64-0.11.0/src/display.rs /home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/base64-0.11.0/src/tables.rs /home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/base64-0.11.0/src/write/mod.rs /home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/base64-0.11.0/src/write/encoder.rs /home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/base64-0.11.0/src/encode.rs /home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/base64-0.11.0/src/decode.rs
+
+/home/naka/Desktop/work/rust/rust101/chap3/basic_setup/target/debug/deps/libbase64-5f8ebd851e77c4c4.rmeta: /home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/base64-0.11.0/src/lib.rs /home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/base64-0.11.0/src/chunked_encoder.rs /home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/base64-0.11.0/src/display.rs /home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/base64-0.11.0/src/tables.rs /home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/base64-0.11.0/src/write/mod.rs /home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/base64-0.11.0/src/write/encoder.rs /home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/base64-0.11.0/src/encode.rs /home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/base64-0.11.0/src/decode.rs
+
+/home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/base64-0.11.0/src/lib.rs:
+/home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/base64-0.11.0/src/chunked_encoder.rs:
+/home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/base64-0.11.0/src/display.rs:
+/home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/base64-0.11.0/src/tables.rs:
+/home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/base64-0.11.0/src/write/mod.rs:
+/home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/base64-0.11.0/src/write/encoder.rs:
+/home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/base64-0.11.0/src/encode.rs:
+/home/naka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/base64-0.11.0/src/decode.rs:
