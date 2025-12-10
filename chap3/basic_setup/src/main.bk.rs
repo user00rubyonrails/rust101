@@ -1,0 +1,24 @@
+use actix_web::{App, HttpRequest, HttpServer, Responder, web};
+
+async fn greet(req: HttpRequest) -> impl Responder {
+    let name = req.match_info().get("name").unwrap_or("World");
+    format!("Hello {}!", name)
+}
+
+#[actix_rt::main]
+async fn main() -> std::io::Result<()> {
+    HttpServer::new(|| {
+        println!("Function is firing;");
+        let app = App::new()
+            .route("/", web::get().to(greet))
+            .route("/{name}", web::get().to(greet));
+        return app;
+    })
+    .bind("127.0.0.1:8000")?
+    /* .worker(3) tell us that the closure was fired 3 times
+        - if not .workers() - closure is fired to the number of cores your system has.
+    */
+    .workers(3)
+    .run()
+    .await
+}
