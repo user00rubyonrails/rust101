@@ -18,7 +18,7 @@ async fn main() -> std::io::Result<()> {
     /* .worker(3) tell us that the closure was fired 3 times
         - if not .workers() - closure is fired to the number of cores your system has.
     */
-    .workers(3)
+    .workers(2)
     .run()
     .await
 }
