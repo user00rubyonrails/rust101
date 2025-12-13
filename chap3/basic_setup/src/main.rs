@@ -15,14 +15,14 @@ async fn main() -> std::io::Result<()> {
     let s1 = HttpServer::new(move || {
         App::new().service(web::scope("/utils").route("/one", web::get().to(utils_one)))
     })
-        .bind("0.0.0.0:3006")?
+        .bind("127.0.0.1:3006")?
         .run();
 
     // produce second future for server
     let s2 = HttpServer::new(move || {
         App::new().service(web::resource("/health").route(web::get().to(health)))
     })
-        .bind("0.0.0.0:8080")?
+        .bind("127.0.0.1:8081")?
         .run();
 
     // join both server futures and run them
