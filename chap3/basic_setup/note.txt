@@ -8,3 +8,15 @@ error[E0277]: cannot subtract `TimeDelta` from `Tm`
 [Chrono change to v0.4.30 breaks the build of actix-http-1.0.1 #3135]
 For reference this is what I had to do to specify the exact version before the breaking changes.
 chrono = { version = "= 0.4.29" }
+
+
+a future is an unprocessed computation, where the result is
+not yet available, but when we call or wait, the future will be populated with the result of
+the computation. 
+- Futures can also be referred to as promises, delays, or deferred
+- have a `join` function, it makes sense to utilize this to split the time taken in half by getting two futures to run at the same time
+The futures are being run sequentially. The only difference is that we return the result of
+the futures in a tuple.
+However, this does not give us the result that we were expecting:
+The futures are being run sequentially. The only difference is that we return the result of
+the futures in a tuple. Despite the futures::join function being counter-intuitive
