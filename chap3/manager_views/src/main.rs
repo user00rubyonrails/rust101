@@ -1,6 +1,13 @@
 use actix_web::{App, HttpServer};
 mod views;
 
+mod state;
+mod to_do;
+mod processes;
+
+// #[path = "views/to_do/mod.rs"]
+// mod test;
+
 #[actix_rt::main]
 async fn main() -> std::io::Result<()> {
     HttpServer::new(|| {

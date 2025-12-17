@@ -8,3 +8,4 @@ actix-web = "2"
 actix-rt = "1.0"
 
 chrono = { version = "= 0.4.29" }
+serde_json ={ version = "1.0", default-features = false, features = ["alloc"]}
