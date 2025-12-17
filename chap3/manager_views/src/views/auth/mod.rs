@@ -4,12 +4,19 @@ mod logout;
 use super::path::Path;
 
 pub fn auth_factory(app: &mut web::ServiceConfig, logout: bool) {
-    let base_path: Path = Path {prefix: "/auth".to_string()};
+    let base_path: Path = Path {
+        prefix: "/auth".to_string(),
+    };
 
-    let app = app.route(&base_path.define(String::from("/login")), web::get().to(login::login));
+    let app = app.route(
+        &base_path.define(String::from("/login")),
+        web::get().to(login::login),
+    );
 
     if logout {
-        app.route(&base_path.define(String::from("logout")), web::get().to(logout::logout));
+        app.route(
+            &base_path.define(String::from("logout")),
+            web::get().to(logout::logout),
+        );
     }
-
 }
