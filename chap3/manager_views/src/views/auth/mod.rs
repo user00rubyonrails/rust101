@@ -8,7 +8,7 @@ pub fn auth_factory(app: &mut web::ServiceConfig) {
         prefix: "/auth".to_string(),
     };
 
-    let app = app.route(
+    app.route(
         &base_path.define(String::from("/login")),
         web::get().to(login::login),
     ).route(

@@ -3,6 +3,7 @@ use actix_web::web;
 
 mod create;
 mod get;
+mod edit;
 mod utils;
 
 pub fn item_factory(app: &mut web::ServiceConfig) {
@@ -21,5 +22,9 @@ pub fn item_factory(app: &mut web::ServiceConfig) {
     app.route(
         &base_path.define(String::from("/get")),
         web::get().to(get::get),
+    );
+    app.route(
+        &base_path.define(String::from("/edit")),
+        web::put().to(edit::edit),
     );
 }

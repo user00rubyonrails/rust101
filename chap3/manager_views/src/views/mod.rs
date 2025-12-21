@@ -1,5 +1,3 @@
-use std::env;
-
 use actix_web::web;
 
 mod auth;
