@@ -4,8 +4,10 @@ mod views;
 mod state;
 mod to_do;
 mod processes;
+mod json_serialization;
 
-// #[path = "views/to_do/mod.rs"]
+// used to include mod for rust-alayzer working on file
+// #[path = "json_serialization/mod.rs"]
 // mod test;
 
 #[actix_rt::main]

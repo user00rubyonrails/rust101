@@ -1,5 +1,7 @@
+use serde::Serialize;
 
-#[derive(Debug)]
+
+#[derive(Serialize, Debug)]
 pub struct Base {
     pub title: String,
     pub status: String,
