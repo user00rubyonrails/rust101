@@ -1,5 +1,3 @@
-use std::result;
-
 use actix_service::Service;
 use actix_web::{App, HttpServer};
 mod views;
@@ -17,7 +15,8 @@ mod to_do;
 async fn main() -> std::io::Result<()> {
     HttpServer::new(|| {
         let app = App::new()
-            .wrap_fn(|req, app_routing| { // .wrap_fn(|req, app_routing| {}) - this configurates the `middleware` for the server via a closure
+            .wrap_fn(|req, app_routing| {
+                // .wrap_fn(|req, app_routing| {}) - this configurates the `middleware` for the server via a closure
                 // inside the middleware which is check token have 3 cases:
                 // 1. NO token in headers
                 // 2. WRONG token in headers
@@ -36,7 +35,7 @@ async fn main() -> std::io::Result<()> {
                 }
             })
             .configure(views::views_factory);
-        return app
+        return app;
     })
     .bind("127.0.0.1:8000")?
     .run()
