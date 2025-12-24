@@ -7,7 +7,7 @@ mod processes;
 mod state;
 mod to_do;
 
-// used to include mod for rust-alayzer working on file
+// used to include mod for `rust-alayzer` working on file
 // #[path = "views/to_do/edit.rs"]
 // mod test;
 
