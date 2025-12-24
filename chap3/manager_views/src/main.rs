@@ -8,7 +8,7 @@ mod state;
 mod to_do;
 
 // used to include mod for `rust-alayzer` working on file
-// #[path = "views/to_do/edit.rs"]
+// #[path = "app/items.rs"]
 // mod test;
 
 #[actix_rt::main]
