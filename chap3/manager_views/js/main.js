@@ -18,10 +18,14 @@ function renderItems(items, processType,
     let placeholderId = processType +
       "-" + title.replaceAll(" ", "-");
 
-    placeholder += "<div>" + title +
-      "<button " + 'id="' + placeholderId + '">'
-      + processType +
-      '</button>' + "</div>";
+    placeholder += `<div class='itemContainer'>
+      <p>${title}</p>
+      <div class='actionButton'>
+        <button id="${placeholderId}">
+        ${processType}
+        </button>
+      </div>
+    </div>`;
     itemsMeta.push({ "id": placeholderId, "title": title });
   }
   placeholder += "</div>"
@@ -50,6 +54,8 @@ function apiCall(url, method) {
       if (this.readyState === this.DONE) {
         renderItems(JSON.parse(this.responseText)["pending_items"], "edit", "pendingItems", editItem);
         renderItems(JSON.parse(this.responseText)["done_items"], "delete", "doneItems", deleteItem);
+        document.getElementById("completeNum").innerHTML = JSON.parse(this.responseText)["done_item_count"];
+            document.getElementById("pendingNum").innerHTML = JSON.parse(this.responseText)["pending_item_count"];
       }
     } catch { // prevent when create new data. this.responseText not a json data
       getItems();
