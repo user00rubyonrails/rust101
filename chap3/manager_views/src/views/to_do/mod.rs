@@ -2,9 +2,9 @@ use super::path::Path;
 use actix_web::web;
 
 mod create;
-mod get;
-mod edit;
 mod delete;
+mod edit;
+mod get;
 mod utils;
 
 pub fn item_factory(app: &mut web::ServiceConfig) {

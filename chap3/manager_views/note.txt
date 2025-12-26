@@ -4,19 +4,9 @@
   tree -I 'node_modules|dist|cache|target' tree cmd ignore 
 ```
 
-1. What params is passed into the HttpServer::new function?
-->
-1.1 What does the params return?
--> 
-
-2. How is a closure different from a function?
-
-3. What is the different between a `process` and a `thread`?
-
-4. What is the different between an async function and a normal one?
-
-5. What is the different between `await` and `join`?
-
-6. What is the advantage of chaining factories?
-
-7. What is the advantage of having a utility struct such as the Path struct?
+```bash
+diesel setup
+diesel migration run 
+diesel migration redo 
+diesel migration generate create_other_todo_items
+```

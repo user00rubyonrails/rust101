@@ -1,18 +1,24 @@
-use serde_json::Map;
-use serde_json::value::Value;
+use crate::diesel;
+use diesel::prelude::*;
 
-use crate::{json_serialization::to_to_items::ToDoItems, state::read_file, to_do::to_do_factory};
+use crate::json_serialization::to_to_items::ToDoItems;
+use crate::to_do::to_do_factory;
+
+use crate::database::establish_connection;
+use crate::models::item::item::Item;
+use crate::schema::to_do;
 
 pub fn return_state() -> ToDoItems {
-    let state: Map<String, Value> = read_file(String::from("./state.json"));
-
-    let mut input_items = Vec::new();
-    for (key, value) in state {
-        let item_type = String::from(value.as_str().unwrap());
-
-        let item = to_do_factory(&item_type, &key).unwrap();
-        input_items.push(item);
+    let connection = establish_connection();
+    let items = to_do::table
+        .order(to_do::columns::id.asc())
+        .load::<Item>(&connection)
+        .unwrap();
+    let mut array_buffer = Vec::new();
+    for item in items {
+        let item = to_do_factory(&item.status, &item.title).unwrap();
+        array_buffer.push(item);
     }
 
-    return ToDoItems::new(input_items)
+    return ToDoItems::new(array_buffer);
 }

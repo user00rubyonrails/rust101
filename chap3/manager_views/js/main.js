@@ -58,7 +58,7 @@ function apiCall(url, method) {
             document.getElementById("pendingNum").innerHTML = JSON.parse(this.responseText)["pending_item_count"];
       }
     } catch { // prevent when create new data. this.responseText not a json data
-      getItems();
+      // getItems();
     }
   });
   xhr.open(method, url);

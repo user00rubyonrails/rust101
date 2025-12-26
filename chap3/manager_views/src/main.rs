@@ -15,9 +15,8 @@ mod state;
 mod to_do;
 
 // used to include mod for `rust-alayzer` working on file
-// #[path = "app/items.rs"]
+// #[path = "views/to_do/utils.rs"]
 // mod test;
-
 #[actix_rt::main]
 async fn main() -> std::io::Result<()> {
     HttpServer::new(|| {
