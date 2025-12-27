@@ -24,3 +24,29 @@ diesel migration run
 diesel migration redo 
 diesel migration generate create_other_todo_items
 ```
+
+1️⃣ Open pgAdmin - Open your browser and go to:
+http://localhost:5050
+
+2️⃣ Login to pgAdmin
+Use the credentials from your compose file:
+Email: admin@local.dev
+Password: admin
+
+🟢 Connection tab
+Use container networking, not localhost:
+Field	Value
+Host name / address	postgres
+Port	5432
+Maintenance database	to_do
+Username	username
+Password	password
+Save password	✅
+
+Host name / address is `postgres` why not `localhost` ?
+Because pgAdmin and Postgres are running in different containers.
+Inside a container:
+localhost always means “this same container”
+So from pgAdmin container:
+localhost ❌ → pgAdmin itself (no Postgres there)
+postgres ✅ → Postgres container

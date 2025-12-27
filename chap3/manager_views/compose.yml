@@ -1,11 +1,33 @@
 services:
   postgres:
-    container_name: "to-do-postgres"
-    image: 'postgres:11.2'
+    container_name: to-do-postgres
+    image: postgres:11.2
     restart: always
     ports:
-      - '5432:5432'
+      - "5432:5432"
     environment:
-      - 'POSTGRES_USER=username'
-      - 'POSTGRES_DB=to_do'
-      - 'POSTGRES_PASSWORD=password'
+      POSTGRES_USER: username
+      POSTGRES_DB: to_do
+      POSTGRES_PASSWORD: password
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  pgadmin:
+    container_name: to-do-pgadmin
+    image: dpage/pgadmin4:latest
+    restart: always
+    depends_on:
+      - postgres
+      # when use depends_on, Docker Compose automatically creates:
+      # - A private network
+      # - DNS entries for service names
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@local.dev
+      PGADMIN_DEFAULT_PASSWORD: admin
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+volumes:
+  pgdata:
+  pgadmin-data:

@@ -15,3 +15,7 @@ actix-service = "1.0.6"
 
 diesel = {version = "1.4.4", features = ["postgres"]}
 dotenv = "0.15.0"
+
+# Managing User sessions
+bcrypt = "0.8.2" # to hash and check passwords
+uuid = {version = "0.8", features = ["serde", "v4"]} # generate uniq IDs for our user data models.
