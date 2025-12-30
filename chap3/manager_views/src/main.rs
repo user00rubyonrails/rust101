@@ -14,6 +14,9 @@ mod schema;
 mod state;
 mod to_do;
 
+// Authenticating our users
+mod auth;
+
 // used to include mod for `rust-alayzer` working on file
 // #[path = "views/to_do/utils.rs"]
 // mod test;
@@ -28,7 +31,7 @@ async fn main() -> std::io::Result<()> {
                 // 2. WRONG token in headers
                 // 3. RIGHT token in headers
                 if *&req.path().contains("/item") {
-                    match views::token::process_token(&req) {
+                    match auth::process_token(&req) {
                         Ok(_token) => println!("the token is passable!"),
                         Err(msg) => println!("token error: {}", msg),
                     }

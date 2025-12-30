@@ -1,6 +1,6 @@
 use crate::models::user::new_user::NewUser;
 use crate::schema::{users};
-use crate::{database::establish_connection, json_serialization::new_user::NewUserSchema}
+use crate::{database::establish_connection, json_serialization::new_user::NewUserSchema};
 use actix_web::{HttpResponse, web};
 use diesel::prelude::*;
 
