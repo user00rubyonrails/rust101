@@ -12,22 +12,33 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
 
-  pgadmin:
-    container_name: to-do-pgadmin
-    image: dpage/pgadmin4:latest
+  adminer:
+    container_name: to-do-adminer
+    image: adminer:latest
     restart: always
     depends_on:
       - postgres
-      # when use depends_on, Docker Compose automatically creates:
-      # - A private network
-      # - DNS entries for service names
     ports:
-      - "5050:80"
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@local.dev
-      PGADMIN_DEFAULT_PASSWORD: admin
-    volumes:
-      - pgadmin-data:/var/lib/pgadmin
+      - "8080:8080" 
 volumes:
   pgdata:
-  pgadmin-data:
+
+  # pgadmin:
+  #   container_name: to-do-pgadmin
+  #   image: dpage/pgadmin4:latest
+  #   restart: always
+  #   depends_on:
+  #     - postgres
+  #     # when use depends_on, Docker Compose automatically creates:
+  #     # - A private network
+  #     # - DNS entries for service names
+  #   ports:
+  #     - "5050:80"
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: admin@local.dev
+  #     PGADMIN_DEFAULT_PASSWORD: admin
+  #   volumes:
+  #     - pgadmin-data:/var/lib/pgadmin
+# volumes:
+#   pgdata:
+#   pgadmin-data:

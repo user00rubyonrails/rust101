@@ -13,8 +13,8 @@ pub struct NewUser {
 impl NewUser {
     pub fn new(username: String, email: String, password: String) -> NewUser {
         let hashed_password = hash(password, DEFAULT_COST).unwrap();
-        let uuid = Uuid::new_v4().to_string();
+        let unique_id = Uuid::new_v4().to_string();
 
-        return NewUser { username, email, password: hashed_password, unique_id: uuid };
+        return NewUser { username, email, unique_id, password: hashed_password };
     }
 }
