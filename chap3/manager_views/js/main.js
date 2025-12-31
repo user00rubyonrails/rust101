@@ -1,4 +1,10 @@
+const USER_TOKEN = `user-token`;
 
+if(localStorage.getItem(USER_TOKEN) === null) {
+  window.location.replace(
+    document.location.origin + "/login"
+  );
+}
 
 /**
  * Renders the to do items from the backend into a HTML div.
@@ -38,7 +44,6 @@ function renderItems(items, processType,
   }
 }
 
-
 /**
  * Packages an API call ready to be sent.
  *
@@ -63,7 +68,8 @@ function apiCall(url, method) {
   });
   xhr.open(method, url);
   xhr.setRequestHeader('content-type', 'application/json');
-  xhr.setRequestHeader('user-token', 'token');
+  
+  xhr.setRequestHeader(USER_TOKEN, localStorage.getItem(USER_TOKEN));
   return xhr
 }
 

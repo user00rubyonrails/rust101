@@ -4,6 +4,7 @@ use crate::{auth::jwt::JwtToken, database::establish_connection, json_serializat
 
 pub async fn login(credentials: web::Json<Login>) -> HttpResponse {
     println!("[LOG] pub async fn login");
+
     let username = credentials.username.clone();
     let password = credentials.password.clone();
 

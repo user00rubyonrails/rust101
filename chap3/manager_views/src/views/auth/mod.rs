@@ -10,7 +10,7 @@ pub fn auth_factory(app: &mut web::ServiceConfig) {
 
     app.route(
         &base_path.define(String::from("/login")),
-        web::get().to(login::login),
+        web::post().to(login::login),
     )
     .route(
         &base_path.define(String::from("/logout")),
