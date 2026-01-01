@@ -1,9 +1,11 @@
 const USER_TOKEN = `user-token`;
 
-if(localStorage.getItem(USER_TOKEN) === null) {
+if (localStorage.getItem(USER_TOKEN) === null) {
   window.location.replace(
     document.location.origin + "/login"
   );
+} else {
+  getItems();
 }
 
 /**
@@ -57,10 +59,14 @@ function apiCall(url, method) {
   xhr.addEventListener('readystatechange', function () {
     try {
       if (this.readyState === this.DONE) {
-        renderItems(JSON.parse(this.responseText)["pending_items"], "edit", "pendingItems", editItem);
-        renderItems(JSON.parse(this.responseText)["done_items"], "delete", "doneItems", deleteItem);
-        document.getElementById("completeNum").innerHTML = JSON.parse(this.responseText)["done_item_count"];
-            document.getElementById("pendingNum").innerHTML = JSON.parse(this.responseText)["pending_item_count"];
+        if (this.status === 401) {
+          window.location.replace(document.location.origin + "/login/");
+        } else {
+          renderItems(JSON.parse(this.responseText)["pending_items"], "edit", "pendingItems", editItem);
+          renderItems(JSON.parse(this.responseText)["done_items"], "delete", "doneItems", deleteItem);
+          document.getElementById("completeNum").innerHTML = JSON.parse(this.responseText)["done_item_count"];
+          document.getElementById("pendingNum").innerHTML = JSON.parse(this.responseText)["pending_item_count"];
+        }
       }
     } catch { // prevent when create new data. this.responseText not a json data
       // getItems();

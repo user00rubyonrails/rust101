@@ -15,10 +15,6 @@ pub fn item_factory(app: &mut web::ServiceConfig) {
 
     app.route(
         &base_path.define(String::from("/create/{title}")),
-        web::get().to(create::create),
-    );
-    app.route(
-        &base_path.define(String::from("/create/{title}")),
         web::post().to(create::create),
     );
     app.route(

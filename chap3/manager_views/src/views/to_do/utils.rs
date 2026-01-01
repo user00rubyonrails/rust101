@@ -6,12 +6,13 @@ use crate::to_do::to_do_factory;
 
 use crate::database::establish_connection;
 use crate::models::item::item::Item;
-use crate::schema::to_do;
+use crate::schema::to_do::{self};
 
-pub fn return_state() -> ToDoItems {
+pub fn return_state(user_id: &i32) -> ToDoItems {
     let connection = establish_connection();
     let items = to_do::table
         .order(to_do::columns::id.asc())
+        .filter(to_do::columns::user_id.eq(&user_id))
         .load::<Item>(&connection)
         .unwrap();
     let mut array_buffer = Vec::new();

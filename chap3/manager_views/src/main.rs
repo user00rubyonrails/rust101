@@ -5,6 +5,10 @@ extern crate dotenv;
 use actix_service::Service;
 use actix_web::{App, HttpResponse, HttpServer};
 use futures::future::{Either, ok};
+
+use log;
+use env_logger;
+
 mod views;
 
 mod database;
@@ -23,16 +27,18 @@ mod auth;
 // mod test;
 #[actix_rt::main]
 async fn main() -> std::io::Result<()> {
+    env_logger::init();
     HttpServer::new(|| {
         let app = App::new()
             .wrap_fn(|req, app_routing| {
+                let request_url: String = String::from(*&req.uri().path());
                 let passed: bool;
                 // .wrap_fn(|req, app_routing| {}) - this configurates the `middleware` for the server via a closure
                 // inside the middleware which is check token have 3 cases:
                 // 1. NO token in headers
                 // 2. WRONG token in headers
                 // 3. RIGHT token in headers
-                if *&req.path().contains("/item") {
+                if *&req.path().contains("/api/v1/item/") {
                     match auth::process_token(&req) {
                         Ok(_token) => {
                             passed = true;
@@ -45,14 +51,22 @@ async fn main() -> std::io::Result<()> {
                     passed = true;
                 }
                 // create fut async/await belong to the routing, then await to complete and return result
-
                 let end_result = match passed {
-                    true => Either::Left(app_routing.call(req)),
-                    false => Either::Right(ok(
+                    true => {
+                        println!("❌--1. end_result ---true----------");
+                        Either::Left(app_routing.call(req))
+                    },
+                    false => {
+                        println!("❌--2. passed - false");
+                        Either::Right(ok(
                         req.into_response(HttpResponse::Unauthorized().finish().into_body())
-                    )),
+                    ))},
                 };
-                end_result
+                async move {
+                    let result = end_result.await?;
+                    log::info!("{} -> {}", request_url, &result.status());
+                    Ok(result)
+                }
             })
             .configure(views::views_factory);
         return app;
