@@ -3,7 +3,8 @@ extern crate diesel; // extern: ben ngoai-
 extern crate dotenv;
 
 use actix_service::Service;
-use actix_web::{App, HttpServer};
+use actix_web::{App, HttpResponse, HttpServer};
+use futures::future::{Either, ok};
 mod views;
 
 mod database;
@@ -25,6 +26,7 @@ async fn main() -> std::io::Result<()> {
     HttpServer::new(|| {
         let app = App::new()
             .wrap_fn(|req, app_routing| {
+                let passed: bool;
                 // .wrap_fn(|req, app_routing| {}) - this configurates the `middleware` for the server via a closure
                 // inside the middleware which is check token have 3 cases:
                 // 1. NO token in headers
@@ -32,16 +34,25 @@ async fn main() -> std::io::Result<()> {
                 // 3. RIGHT token in headers
                 if *&req.path().contains("/item") {
                     match auth::process_token(&req) {
-                        Ok(_token) => println!("the token is passable!"),
-                        Err(msg) => println!("token error: {}", msg),
+                        Ok(_token) => {
+                            passed = true;
+                        }
+                        Err(_msg) => {
+                            passed = false;
+                        }
                     }
+                } else {
+                    passed = true;
                 }
                 // create fut async/await belong to the routing, then await to complete and return result
-                let fut = app_routing.call(req);
-                async {
-                    let result = fut.await?;
-                    Ok(result)
-                }
+
+                let end_result = match passed {
+                    true => Either::Left(app_routing.call(req)),
+                    false => Either::Right(ok(
+                        req.into_response(HttpResponse::Unauthorized().finish().into_body())
+                    )),
+                };
+                end_result
             })
             .configure(views::views_factory);
         return app;

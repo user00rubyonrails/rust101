@@ -66,9 +66,8 @@ function apiCall(url, method) {
       // getItems();
     }
   });
-  xhr.open(method, url);
+  xhr.open(method, `/api/v1` + url);
   xhr.setRequestHeader('content-type', 'application/json');
-  
   xhr.setRequestHeader(USER_TOKEN, localStorage.getItem(USER_TOKEN));
   return xhr
 }
