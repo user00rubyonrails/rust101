@@ -6,14 +6,22 @@ use std::{
     sync::{Arc, Mutex, atomic::AtomicUsize},
 };
 
-use actix_web::{App, HttpServer, Result, middleware, web};
+use actix_web::{
+    App, HttpRequest, HttpResponse, HttpServer, Result,
+    error::{Error, InternalError, JsonPayloadError},
+    middleware, web,
+};
 
 // use `Serde` to turn JSON data with that format into instances of our struct
+// Serialize: convert Rust type to JSON data
+// Deserialize: convert JSON data to Rust type
 use serde::{Deserialize, Serialize};
 
 pub struct MessageApp {
     port: u16,
 }
+
+const LOG_FORMAT: &'static str = r#""%r" %s %b "%{User-Agent}i" %D"#;
 
 impl MessageApp {
     pub fn new(port: u16) -> Self {
@@ -31,11 +39,15 @@ impl MessageApp {
                     request_count: Cell::new(0),
                     messages: messages.clone(),
                 })
-                .wrap(middleware::Logger::default())
+                .wrap(middleware::Logger::new(LOG_FORMAT))
                 .service(index)
                 .service(
                     web::resource("/send")
-                        .data(web::JsonConfig::default().limit(4096))
+                        .data(
+                            web::JsonConfig::default()
+                                .limit(4096)
+                                .error_handler(post_error),
+                        )
                         .route(web::post().to(post)),
                 )
                 .service(clear)
@@ -46,7 +58,7 @@ impl MessageApp {
     }
 }
 
-#[derive(Serialize)]
+#[derive(Serialize)] // we call it attribute, derive(suy ra) thuo.c ti'nh Serialize of serde
 struct IndexResponse {
     server_id: usize,
     request_count: usize,
@@ -110,4 +122,22 @@ fn clear(state: web::Data<AppState>) -> Result<web::Json<IndexResponse>> {
         request_count,
         message: vec![],
     }))
+}
+
+#[derive(Serialize)]
+struct PostError {
+    server_id: usize,
+    request_count: usize,
+    error: String,
+}
+fn post_error(err: JsonPayloadError, req: &HttpRequest) -> Error {
+    let state = req.app_data::<AppState>().unwrap(); // .unwrap(): OK or panic! macro
+    let request_count = state.request_count.get() + 1;
+    state.request_count.set(request_count);
+    let post_error = PostError {
+        server_id: state.server_id,
+        request_count,
+        error: format!("{}", err),
+    };
+    InternalError::from_response(err, HttpResponse::BadRequest().json(post_error)).into()
 }
