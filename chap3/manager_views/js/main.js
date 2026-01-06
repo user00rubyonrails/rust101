@@ -2,7 +2,7 @@ const USER_TOKEN = `user-token`;
 
 if (localStorage.getItem(USER_TOKEN) === null) {
   window.location.replace(
-    document.location.origin + "/login"
+    document.location.origin + "/login/"
   );
 } else {
   getItems();

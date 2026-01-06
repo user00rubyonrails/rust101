@@ -1,3 +1,4 @@
+#[derive(Debug)]
 pub struct Path {
     pub prefix: String,
     pub backend: bool
@@ -5,11 +6,20 @@ pub struct Path {
 
 impl Path {
     pub fn define(&self, following_path: String) -> String {
+        // if self.backend == true {
+        //     let path = self.prefix.to_owned() + &following_path;
+        //     return    String::from("/api/v1") + &path
+        // } else {
+        //     return self.prefix.to_owned() + &following_path
+        // }
+
+        // use match {} check reduce 2 `return` keywords from if else
+        println!("{:?}", self);
         match self.backend {
             true => {
                 let path = self.prefix.to_owned() + &following_path;
                 String::from("/api/v1") + &path
-            }
+            },
             false => self.prefix.to_owned() + &following_path
         }
     }

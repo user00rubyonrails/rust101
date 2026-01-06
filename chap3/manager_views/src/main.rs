@@ -53,11 +53,9 @@ async fn main() -> std::io::Result<()> {
                 // create fut async/await belong to the routing, then await to complete and return result
                 let end_result = match passed {
                     true => {
-                        println!("❌--1. end_result ---true----------");
                         Either::Left(app_routing.call(req))
                     },
                     false => {
-                        println!("❌--2. passed - false");
                         Either::Right(ok(
                         req.into_response(HttpResponse::Unauthorized().finish().into_body())
                     ))},
