@@ -1,3 +1,4 @@
+## Full stack RUST: completed guide
 ## handle error by Result<T, E>
 struct Result {
   Ok(T),
