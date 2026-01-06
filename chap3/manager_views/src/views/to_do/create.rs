@@ -7,6 +7,7 @@ use actix_web::{HttpRequest, Responder};
 use diesel::prelude::*;
 
 pub async fn create(request: HttpRequest) -> impl Responder {
+    println!("{:?}", &request);
     let title: String = request.match_info().get("title").unwrap().to_string();
     let title_reference: String = title.clone();
 
@@ -22,7 +23,7 @@ pub async fn create(request: HttpRequest) -> impl Responder {
         .unwrap();
 
     if items.len() == 0 {
-        let new_post = NewItem::new(title, 1);
+        let new_post = NewItem::new(title, token.user_id);
         let _ = diesel::insert_into(to_do::table)
             .values(&new_post)
             .execute(&conn);

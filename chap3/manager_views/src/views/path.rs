@@ -14,7 +14,6 @@ impl Path {
         // }
 
         // use match {} check reduce 2 `return` keywords from if else
-        println!("{:?}", self);
         match self.backend {
             true => {
                 let path = self.prefix.to_owned() + &following_path;
