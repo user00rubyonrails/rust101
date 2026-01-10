@@ -1,5 +1,5 @@
-use actix_web::dev::ServiceRequest;
 use super::jwt;
+use actix_web::dev::ServiceRequest;
 
 type ResultType = Result<String, &'static str>;
 // check password
@@ -24,4 +24,20 @@ pub fn extract_header_token(request: &ServiceRequest) -> ResultType {
         },
         None => Err("There is no token"),
     }
+}
+
+#[cfg(test)]
+mod check_credentials_tests {
+    use super::super::jwt::JwtToken;
+    use super::check_password;
+    use super::extract_header_token;
+    use actix_web;
+    #[test]
+    fn correct_check_password() {}
+    #[test]
+    fn incorrect_check_password() {}
+    #[test]
+    fn no_token_in_extract_header_token() {}
+    #[test]
+    fn correct_token_in_extract_header_token() {}
 }

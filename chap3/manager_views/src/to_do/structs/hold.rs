@@ -1,8 +1,5 @@
 use super::base::Base;
 
-use super::traits::edit::Edit;
-use super::traits::get::Get;
-
 pub struct Hold {
     pub super_struct: Base,
 }
@@ -13,6 +10,3 @@ impl Hold {
         return Hold { super_struct: base };
     }
 }
-
-impl Get for Hold {}
-impl Edit for Hold {}

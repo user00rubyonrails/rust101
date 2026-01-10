@@ -1,9 +1,5 @@
 use super::base::Base;
 
-use super::traits::delete::Delete;
-use super::traits::edit::Edit;
-use super::traits::get::Get;
-
 #[derive(Debug)]
 pub struct Done {
     pub super_struct: Base,
@@ -16,8 +12,19 @@ impl Done {
         return Done { super_struct: base };
     }
 }
-impl Get for Done {}
 
-impl Delete for Done {}
+#[cfg(test)]
+mod done_tests {
+    use super::Done;
 
-impl Edit for Done {}
+    #[test]
+    fn new() {
+        let expected_status = String::from("done");
+        let input_title = String::from("excel date");
+        let expected_title = String::from("excel date");
+
+        let done = Done::new(&input_title);
+        assert_eq!(expected_status, done.super_struct.status);
+        assert_eq!(expected_title, done.super_struct.title);
+    }
+}

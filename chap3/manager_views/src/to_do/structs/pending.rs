@@ -1,10 +1,5 @@
 use super::base::Base;
 
-use super::traits::create::Create;
-use super::traits::delete::Delete;
-use super::traits::edit::Edit;
-use super::traits::get::Get;
-
 #[derive(Debug)]
 pub struct Pending {
     pub super_struct: Base,
@@ -17,7 +12,18 @@ impl Pending {
     }
 }
 
-impl Get for Pending {}
-impl Edit for Pending {}
-impl Create for Pending {}
-impl Delete for Pending {}
+#[cfg(test)]
+mod pending_tests {
+    use super::Pending;
+
+    #[test]
+    fn new() {
+        let expected_status = String::from("pending");
+        let input_title = String::from("excel date");
+        let expected_title = String::from("excel date");
+        let pending: Pending = Pending::new(&input_title);
+
+        assert_eq!(expected_title, pending.super_struct.title);
+        assert_eq!(expected_status, pending.super_struct.status);
+    }
+}

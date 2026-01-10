@@ -3,8 +3,6 @@ use diesel::prelude::*;
 use crate::{auth::jwt::JwtToken, database::establish_connection, json_serialization::login::Login, models::user::user::User, schema::users};
 
 pub async fn login(credentials: web::Json<Login>) -> HttpResponse {
-    println!("[LOG] pub async fn login");
-
     let username = credentials.username.clone();
     let password = credentials.password.clone();
 
@@ -15,6 +13,7 @@ pub async fn login(credentials: web::Json<Login>) -> HttpResponse {
     if users.len() == 0 { // no user in db: notfound!
         return HttpResponse::NotFound().await.unwrap()
     } else if users.len() > 1 { // have more than 1 user in db: conflict!!
+        log::error!("multiple users have the username: {}", credentials.username.clone());
         return HttpResponse::Conflict().await.unwrap()
     }
 
