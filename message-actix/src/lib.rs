@@ -147,9 +147,8 @@ fn post_error(err: JsonPayloadError, req: &HttpRequest) -> Error {
 struct LookupResponse {
     server_id: usize,
     request_count: usize,
-    result: Option<String>
+    result: Option<String>,
 }
-
 
 #[get("/lookup/{index}")]
 fn lookup(state: web::Data<AppState>, idx: web::Path<usize>) -> Result<web::Json<LookupResponse>> {
